@@ -23,7 +23,7 @@ EcoRide est une plateforme de covoiturage écologique développée avec Symfony 
 ## Installation
 
 1. Clonez le dépôt :
-git clone https://github.com/votre-username/ecoride.git
+git clone https://github.com/Pascal1494/ECF-ecoride-2.git
 2. Installez les dépendances PHP :
 composer install
 3. Configurez votre base de données dans le fichier `.env`
