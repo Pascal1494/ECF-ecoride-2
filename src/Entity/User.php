@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -48,7 +50,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $isSmoking = null;
 
     #[ORM\Column]
-    private ?bool $isAnimal = null; // Commencer avec 10 crédits
+    private ?bool $isAnimal = null;
+
+    /**
+     * @var Collection<int, Vehicle>
+     */
+    #[ORM\OneToMany(targetEntity: Vehicle::class, mappedBy: 'driver')]
+    private Collection $vehicles;
+
+    public function __construct()
+    {
+        $this->vehicles = new ArrayCollection();
+    } // Commencer avec 10 crédits
 
     public function getId(): ?int
     {
@@ -193,6 +206,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAnimal(bool $isAnimal): static
     {
         $this->isAnimal = $isAnimal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicle>
+     */
+    public function getVehicles(): Collection
+    {
+        return $this->vehicles;
+    }
+
+    public function addVehicle(Vehicle $vehicle): static
+    {
+        if (!$this->vehicles->contains($vehicle)) {
+            $this->vehicles->add($vehicle);
+            $vehicle->setDriver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): static
+    {
+        if ($this->vehicles->removeElement($vehicle)) {
+            // set the owning side to null (unless already changed)
+            if ($vehicle->getDriver() === $this) {
+                $vehicle->setDriver(null);
+            }
+        }
 
         return $this;
     }
