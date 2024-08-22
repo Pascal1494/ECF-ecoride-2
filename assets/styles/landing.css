@@ -1,0 +1,32 @@
+  /* Ajoutez ici vos styles personnalisés */
+  body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+.hero {
+    background-image: url('chemin/vers/votre/image-de-fond.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-image {
+  border: 10px solid red;
+  max-width: 60vw;
+
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.eco-green {
+    color: #4CAF50;
+}
+.btn-eco {
+    background-color: #4CAF50;
+    color: white;
+}
