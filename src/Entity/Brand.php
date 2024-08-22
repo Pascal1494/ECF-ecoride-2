@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\BrandRepository;
+use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BrandRepository;
 
 #[ORM\Entity(repositoryClass: BrandRepository::class)]
 class Brand
 {
+
+    use SlugTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

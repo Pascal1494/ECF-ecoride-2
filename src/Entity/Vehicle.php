@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\VehicleRepository;
+use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VehicleRepository;
 
 #[ORM\Entity(repositoryClass: VehicleRepository::class)]
 class Vehicle
 {
+    use SlugTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\FuelRepository;
+use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FuelRepository;
 
 #[ORM\Entity(repositoryClass: FuelRepository::class)]
 class Fuel
 {
+    use SlugTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
