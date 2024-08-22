@@ -44,7 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $phoneNumber = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $credit = 10;
+    private ?int $credit = 10;     // Commencer avec 10 crédits
 
     #[ORM\Column]
     private ?bool $isSmoking = null;
@@ -61,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->vehicles = new ArrayCollection();
-    } // Commencer avec 10 crédits
+    } 
 
     public function getId(): ?int
     {
@@ -239,4 +239,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
 }
